@@ -1,0 +1,40 @@
+#include<unordered_map>
+void printPairs(int *input, int n, int k) {
+	// Write your code here
+    unordered_map<int,int> m;
+    for(int i=0;i<n;i++)
+    {
+        if(m[input[i]]==0)
+        {
+            m[input[i]]=1;
+        }
+        else
+            m[input[i]]++;
+    }
+    for(int i=0;i<n;i++)
+    {
+        if(m[input[i]-k]>0&&k!=0)
+        {
+            int c1=max(m[input[i]],m[input[i]-k]);
+            {
+                for(int j=0;j<c1;j++)
+                {
+                    cout<<input[i]-k<<" "<<input[i]<<endl;
+                }
+            }
+        }
+           if(m[input[i]-k]>0&&k==0)
+        {
+            int c1=min(m[input[i]],m[input[i]-k]);
+            {
+                for(int j=1;j<c1;j++)
+                {
+                    cout<<input[i]-k<<" "<<input[i]<<endl;
+                }
+            }m[input[i]]--;
+           }
+    }
+    
+}
+
+
