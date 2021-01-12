@@ -1,0 +1,75 @@
+#include <vector>
+#include<unordered_map>
+#include<climits>
+using namespace std;
+
+vector<int> longestConsecutiveIncreasingSequence(int *arr, int n){
+	//whole code is working just have used wrong logic to find the starting index
+    //when comparing between two elemenets in the lest two if statements.
+unordered_map<int,int> m;
+    for(int i=0;i<n;i++)
+    {
+        if(m[arr[i]]==0)
+        {
+            m[arr[i]]=1;
+        }
+    }
+    int ci=0;
+    int si=0;
+    int maxlen=0;
+    int maxllen=0;
+    for(int i=0;i<n;i++)
+    {
+	 int rlen=0;
+     int llen=0;
+        if(m[arr[i]]=1)
+        {
+            for(int j=1;j<INT_MAX;j++)
+            {
+              if(m[arr[i]+j]==1)
+              {
+                  si=i;
+				rlen++;
+                  m[arr[i]+j]=0;
+              }
+                else
+                {
+                    break;
+            	}
+        for(int j=1;j<INT_MAX;j++)
+            {
+              if(m[arr[i]-j]==1)
+              {
+                  si=i;
+				llen++;
+                  m[arr[i]-j]=0;
+              }
+                else
+                {
+                    break;
+            	}
+                
+              }
+                if((rlen+llen==maxlen)&&si<ci)
+                {
+                    maxlen=llen+rlen;
+                    ci=si;
+                    maxllen=llen;
+                }
+                if(rlen+llen>maxlen)
+                {
+                    maxlen=llen+rlen;
+                    ci=si;
+                    maxllen=llen;
+                }
+                         }
+            m[arr[i]]=0;
+    }
+  }
+    vector<int> ans(maxlen+1,0);
+    for(int i=0;i<maxlen+1;i++)
+    {
+        ans[i]=arr[ci]-maxllen+i;
+    }
+    return ans;
+}
