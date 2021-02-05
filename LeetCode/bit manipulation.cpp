@@ -17,4 +17,5 @@ vector<int> countBits(int num)
  return ans;
 
 }
+};
 
